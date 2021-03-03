@@ -82,3 +82,5 @@ inquirer.prompt([
         cadastrarPet(petsJson);
     }
 })
+
+console.log("Alterei pois tenho que fazer um branch")
