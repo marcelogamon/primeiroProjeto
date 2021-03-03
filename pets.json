@@ -1,0 +1,28 @@
+{
+  "arrayPet": [
+    {
+      "id": 1,
+      "nomeDoPet": "Tuca",
+      "raca": "Cachorro",
+      "nomeDono": "Marcelo"
+    },
+    {
+      "id": 2,
+      "nomeDoPet": "Goku",
+      "raca": "Cachorro",
+      "nomeDono": "Caio"
+    },
+    {
+      "id": 3,
+      "nomeDoPet": "Lulu",
+      "raca": "Gato",
+      "nomeDono": "João"
+    },
+    {
+      "id": 4,
+      "nomeDoPet": "Sakura",
+      "raca": "Cachorro",
+      "nomeDono": "Caio"
+    }
+  ]
+}
