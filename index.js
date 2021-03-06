@@ -9,7 +9,7 @@ this.nomeDono = nomeDono;
 let inquirer = require('inquirer');
 var fs = require('fs');
 // TODO: Tem que haver já algum elemento do pets.json
-var petsJson = JSON.parse(fs.readFileSync('pets.json' , 'utf-8'));
+var petsJson = JSON.parse(fs.readFileSync('./pets.json' , 'utf-8'));
 id = petsJson.arrayPet[petsJson.arrayPet.length-1].id
 
 
@@ -49,11 +49,48 @@ function cadastrarPet(petsJson) {
         }
         console.log(petsJson.arrayPet)
         petsJson.arrayPet.push(novoPet)
-        fs.writeFileSync('pets.json',JSON.stringify(petsJson, null, 2), 'utf8');
+        fs.writeFileSync('./pets.json',JSON.stringify(petsJson, null, 2), 'utf8');
         console.log(petsJson)
     })  
     return lista(nome, raca, nomeDono)
 }
+
+
+function buscarPet(petsJson) {
+    inquirer.prompt(
+        {
+            name: "nomepet",
+            message: "nome do pet?",
+        }
+    ).then(resposta => {
+          
+        petsJson = JSON.parse(fs.readFileSync("./pets.json","utf-8"));
+        for(let animais of petsJson.arrayPet){
+            for(let animal in animais){
+                if(animais[animal]==resposta.nomepet)
+                    console.log(animais)
+                    //console.log(animais[animal])
+            }
+        }
+    }
+    );
+}
+
+function listarPet(petsJson) {
+    inquirer.prompt(
+        {
+            type: "confirm",
+            name: "listarpets",
+            message: "listar pets?"
+        }
+    ).then( resposta => {
+        if(resposta.listarpets==true){
+            petsJson = JSON.parse(fs.readFileSync("./pets.json","utf-8"));
+            console.log(petsJson);
+        }
+    });
+}
+
 inquirer.prompt([
     {
       type: 'list',
@@ -80,5 +117,11 @@ inquirer.prompt([
     if(value===0){
         id += 1
         cadastrarPet(petsJson);
+    }else if(value===1){
+        id += 1
+        listarPet(petsJson);
+    }else if(value===2){
+        id += 1
+        buscarPet(petsJson);
     }
 })
