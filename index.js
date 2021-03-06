@@ -9,7 +9,11 @@ this.nomeDono = nomeDono;
 let inquirer = require('inquirer');
 var fs = require('fs');
 // TODO: Tem que haver já algum elemento do pets.json
+
+var petsJson = JSON.parse(fs.readFileSync('pets.json' , 'utf-8'));
+
 var petsJson = JSON.parse(fs.readFileSync('./pets.json' , 'utf-8'));
+
 id = petsJson.arrayPet[petsJson.arrayPet.length-1].id
 
 
@@ -49,11 +53,17 @@ function cadastrarPet(petsJson) {
         }
         console.log(petsJson.arrayPet)
         petsJson.arrayPet.push(novoPet)
+
+        fs.writeFileSync('pets.json',JSON.stringify(petsJson, null, 2), 'utf8');
+
         fs.writeFileSync('./pets.json',JSON.stringify(petsJson, null, 2), 'utf8');
+
         console.log(petsJson)
     })  
     return lista(nome, raca, nomeDono)
 }
+
+
 
 
 function buscarPet(petsJson) {
@@ -91,6 +101,7 @@ function listarPet(petsJson) {
     });
 }
 
+
 inquirer.prompt([
     {
       type: 'list',
@@ -117,6 +128,12 @@ inquirer.prompt([
     if(value===0){
         id += 1
         cadastrarPet(petsJson);
+
+    }
+})
+
+console.log("Alterei pois tenho que fazer um branch")
+=======
     }else if(value===1){
         id += 1
         listarPet(petsJson);
@@ -125,3 +142,4 @@ inquirer.prompt([
         buscarPet(petsJson);
     }
 })
+
